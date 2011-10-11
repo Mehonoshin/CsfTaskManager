@@ -4,11 +4,11 @@ gem 'rails', '3.1.1'
 gem 'json'
 gem 'heroku'
 
-group :development
+group :development do
 	gem 'mysql2'
 end
 
-group :production
+group :production do
 	gem 'pg'
 end
 
