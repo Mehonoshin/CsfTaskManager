@@ -9,14 +9,12 @@
   .topbar
     .topbar-inner
       .container-fluid
-        = link_to "Project name", root_path, :class => "brand"
+        = link_to "Do it later", root_path, :class => "brand"
         %ul.nav
           %li.active
-            = link_to "Home", "#"
+            = link_to "Home", root_path
           %li
-            = link_to "Home", "#"
-          %li
-            = link_to "Home", "#"
+            = link_to "Settings", "#"
         %p.pull-right
           - if user_signed_in?
             Logged in as
@@ -30,7 +28,7 @@
     .sidebar
       .well
         %h5
-          Sidebar
+          Другие фишки
           %ul
             %li
               = link_to "Link", "#"
@@ -42,13 +40,13 @@
               = link_to "Link", "#"
 
         %h5
-          Sidebar
+          Крутые фичи
         %ul
           %li
             = link_to "Link", "#"
 
         %h5
-          Sidebar
+          Также ознакомьтесь
         %ul
           %li
             = link_to "Link", "#"
@@ -59,4 +57,4 @@
 
       %footer
         %p
-          © Company 2011
+          © Mexx && Nek 2011
