@@ -5,6 +5,23 @@ var y = date.getFullYear();
 
 
 $(document).ready(function() {
+	var myRouter = Backbone.Router.extend({
+		routes: {
+			"!/": "root",
+			"!/form": "form"
+		},
+		root: function() {
+			$('#calendar').show();
+			$('#form').hide();
+		},
+		form: function() {
+			$('#calendar').hide();
+			$('#form').show();			
+		}
+	});
+	var rt = new myRouter;
+	Backbone.history.start();
+	
 	$('#calendar').fullCalendar({
 		header: {
 			left: 'prev,next today',

@@ -11,6 +11,7 @@ group :production do
 	gem 'therubyracer-heroku'
 end
 
+gem "rails-backbone"
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
