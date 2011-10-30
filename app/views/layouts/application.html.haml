@@ -9,7 +9,7 @@
   .topbar
     .topbar-inner
       .container-fluid
-        = link_to "Project name", "#", :class => "brand"
+        = link_to "Project name", root_path, :class => "brand"
         %ul.nav
           %li.active
             = link_to "Home", "#"
@@ -18,8 +18,13 @@
           %li
             = link_to "Home", "#"
         %p.pull-right
-          Logged in as 
-          = link_to "Email", "#"
+          - if user_signed_in?
+            Logged in as
+            = link_to current_user.email, user_path
+            = "/"
+            = link_to "Exit", destroy_user_session_path, :method => :delete
+          - else
+            = link_to "Sign in", new_user_session_path
 
   .container-fluid
     .sidebar
@@ -50,43 +55,7 @@
           %li
             = link_to "Link", "#"
     .content
-      .hero-unit
-        %h1
-          Hello, world!
-        %p
-          Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-
-      .row
-        .span6
-          %h2
-            Heading
-          %p
-            Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-        .span5
-          %h2
-            Heading
-          %p
-            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        .span5
-          %h2
-            Heading
-          Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-
-      %hr
-
-      .row
-        .span6
-          %h2
-            Heading
-          Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-        .span5
-          %h2
-            Heading
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        .span5
-          %h2
-            Heading
-          Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+      = yield
 
       %footer
         %p
