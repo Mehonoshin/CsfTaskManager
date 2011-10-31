@@ -1,3 +1,5 @@
-#calendar
-#form{:style => "display: none;"}
-	I'm form
+#app
+	#calendar
+	#form{:style => "display: none;"}
+		= render :partial => "goals/form"
+		%ul#goals-list		

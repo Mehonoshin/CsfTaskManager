@@ -5,7 +5,36 @@ var y = date.getFullYear();
 
 
 $(document).ready(function() {
+	var Goal = Backbone.Model.extend({
+		url: "/goals"
+	});
+	var GoalsList = Backbone.Collection.extend({
+		model: Goal,
+		url: '/goals'
+	});
+	
+	var goalsView = Backbone.View.extend({
+		initialize: function() {
+			this.goals = new GoalsList();
+		},
+		el: $('#app'),
+		events: {
+			"click .add-btn": "addGoal"
+		},
+		addGoal: function() {
+			newTitle = $('.goal-title').val();
+			newNote = $('.goal-note').val();
+			newGoal = new Goal({title: newTitle, note: newNote});
+			newGoal.save();
+			this.goals.add(newGoal);
+			console.log(this.goals.length);
+		}
+	});
+	
 	var myRouter = Backbone.Router.extend({
+		initialize: function() {
+			goalsBlock = new goalsView();
+		},
 		routes: {
 			"!/": "root",
 			"!/form": "form"
@@ -19,6 +48,7 @@ $(document).ready(function() {
 			$('#form').show();			
 		}
 	});
+	
 	var rt = new myRouter;
 	Backbone.history.start();
 	

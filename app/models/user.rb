@@ -6,4 +6,21 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  ## included modules & attr_*
+
+  ## associations
+  has_many :goals
+
+  ## plugins
+
+  ## callbacks
+
+  ## validations
+
+  ## named_scopes
+
+  ## class methods
+  public
+  protected
+  private
 end

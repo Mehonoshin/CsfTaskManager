@@ -1,0 +1,14 @@
+%h3
+	New Goal
+.form-stacked
+	= form_for Goal.new do |f|
+		= f.label :title
+		%p
+		= f.text_field :title, :class => "goal-title"
+		%p
+		= f.label :note
+		%p
+		= f.text_field :note, :class => "goal-note"
+%p
+	%button{:class => "add-btn btn"}
+		Add
