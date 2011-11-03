@@ -19,7 +19,11 @@ $(document).ready(function() {
 		},
 		el: $('#app'),
 		events: {
-			"click .add-btn": "addGoal"
+			"click .add-btn": "addGoal",
+			"click #load": "loadGoals"
+		},
+		render: function() {
+			this.loadGoals();
 		},
 		addGoal: function() {
 			newTitle = $('.goal-title').val();
@@ -27,7 +31,13 @@ $(document).ready(function() {
 			newGoal = new Goal({title: newTitle, note: newNote});
 			newGoal.save();
 			this.goals.add(newGoal);
-			console.log(this.goals.length);
+		},
+		loadGoals: function() {
+			this.goals.fetch();
+			$("#goals-list").html('');
+			this.goals.each(function(goal) {
+				$("#goals-list").append("<li>" + goal.get('title') + "(" + goal.get('note') + ")</li>");	
+			});			
 		}
 	});
 	

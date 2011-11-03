@@ -11,10 +11,13 @@
       .container-fluid
         = link_to "Do it later", root_path, :class => "brand"
         %ul.nav
-          %li.active
-            = link_to "Home", root_path
-          %li
-            = link_to "Settings", "#"
+          - if user_signed_in?
+            %li
+              = link_to "Calendar", "/#!/"
+            %li
+              = link_to "Add", "/#!/form"
+            %li
+              = link_to "Settings", "#"
         %p.pull-right
           - if user_signed_in?
             Logged in as
@@ -24,37 +27,8 @@
           - else
             = link_to "Sign in", new_user_session_path
 
-  .container-fluid
-    .sidebar
-      .well
-        %h5
-          Другие фишки
-          %ul
-            %li
-              = link_to "Calendar", "#!/"
-            %li
-              = link_to "Add", "#!/form"
-            %li
-              = link_to "Link", "#"
-            %li
-              = link_to "Link", "#"
-
-        %h5
-          Крутые фичи
-        %ul
-          %li
-            = link_to "Link", "#"
-
-        %h5
-          Также ознакомьтесь
-        %ul
-          %li
-            = link_to "Link", "#"
-          %li
-            = link_to "Link", "#"
-    .content
-      = yield
-
-      %footer
-        %p
-          © Mexx && Nek 2011
+  .content
+    = yield
+    %footer
+      %p
+        © Mexx && Nek 2011
