@@ -5,4 +5,5 @@ CsfTaskManager::Application.routes.draw do
   match "/api/auth" => "main#auth"
   
   resources :goals
+  resources :roles
 end

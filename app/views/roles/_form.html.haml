@@ -1,0 +1,14 @@
+%h3
+	New User Role
+.form-stacked
+	= form_for Role.new do |f|
+		= f.label :title
+		%p
+		= f.text_field :name, :class => "role-title"
+		%p
+		= f.label :note
+		%p
+		= f.text_field :description, :class => "role-note"
+%p
+	%button{:class => "add-btn btn"}
+		Add

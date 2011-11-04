@@ -52,15 +52,20 @@ $(document).ready(function() {
 		},
 		routes: {
 			"!/": "root",
-			"!/form": "form"
+			"!/form": "form",
+			"!/role": "role"
 		},
 		root: function() {
+			$('.app-screen').hide();			
 			$('#calendar-grid').show();
-			$('#form').hide();
 		},
 		form: function() {
-			$('#calendar-grid').hide();
-			$('#form').show();			
+			$('.app-screen').hide();
+			$('#goal-form').show();			
+		},
+		role: function() {
+			$('.app-screen').hide();
+			$('#role-form').show();			
 		}
 	});
 	

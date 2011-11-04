@@ -1,9 +1,7 @@
 class GoalsController < ApplicationController
   def create
-    goal = Goal.create(params[:goal])
-    goal.user_id = current_user.id
-    goal.save
-    render :json => goal.to_json
+    current_user.goals.create(params[:goal])
+    render :json => current_user.goals.last.to_json
   end
   
   def update

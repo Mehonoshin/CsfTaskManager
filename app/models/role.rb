@@ -1,9 +1,9 @@
-class Goal < ActiveRecord::Base
+class Role < ActiveRecord::Base
   ## included modules & attr_*
 
   ## associations
-  belongs_to :user
-  belongs_to :role
+  belongs_to :user  
+  has_many :goals
   
   ## plugins
 
@@ -17,4 +17,5 @@ class Goal < ActiveRecord::Base
   public
   protected
   private
+  
 end

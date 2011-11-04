@@ -1,12 +1,12 @@
 #app
-  #form{:style => "display: none;"}
+  #goal-form.app-screen{:style => "display: none;"}
     %button#load.btn
       Load
     = render :partial => "goals/form"
     %ul#goals-list
 
 
-  %table.bordered-table#calendar-grid
+  %table.app-screen.bordered-table#calendar-grid
     %tr
       %td{:colspan => 2}
         week
@@ -15,3 +15,6 @@
         day
       %td
         #calendar
+
+  .app-screen#role-form
+    = render :partial => "roles/form"

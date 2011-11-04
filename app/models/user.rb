@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   ## associations
   has_many :goals
+  has_many :roles
 
   ## plugins
 
