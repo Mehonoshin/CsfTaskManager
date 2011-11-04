@@ -3,6 +3,7 @@ var d = date.getDate();
 var m = date.getMonth();
 var y = date.getFullYear();
 
+// Twitter bootstrap
 $(document).ready(function() {
     $(".topbar").dropdown();
 });
@@ -54,11 +55,11 @@ $(document).ready(function() {
 			"!/form": "form"
 		},
 		root: function() {
-			$('#calendar').show();
+			$('#calendar-grid').show();
 			$('#form').hide();
 		},
 		form: function() {
-			$('#calendar').hide();
+			$('#calendar-grid').hide();
 			$('#form').show();			
 		}
 	});

@@ -1,7 +1,17 @@
 #app
-	#calendar
-	#form{:style => "display: none;"}
-		%button#load.btn
-			Load
-		= render :partial => "goals/form"
-		%ul#goals-list		
+  #form{:style => "display: none;"}
+    %button#load.btn
+      Load
+    = render :partial => "goals/form"
+    %ul#goals-list
+
+
+  %table.bordered-table#calendar-grid
+    %tr
+      %td{:colspan => 2}
+        week
+    %tr
+      %td
+        day
+      %td
+        #calendar
