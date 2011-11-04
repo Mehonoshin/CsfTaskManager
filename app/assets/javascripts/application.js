@@ -7,6 +7,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require bootstrap-dropdown
+//= require bootstrap-twipsy
+//= require bootstrap-scrollspy
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync

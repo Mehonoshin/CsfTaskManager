@@ -19,7 +19,7 @@ group :assets do
 end
 
 gem "haml"
-gem "twitter-bootstrap-rails", "0.0.5"
+gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static"
 gem 'jquery-rails'
 
 group :development do

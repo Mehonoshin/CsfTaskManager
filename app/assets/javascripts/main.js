@@ -3,8 +3,12 @@ var d = date.getDate();
 var m = date.getMonth();
 var y = date.getFullYear();
 
+$(document).ready(function() {
+    $(".topbar").dropdown();
+});
 
 $(document).ready(function() {
+	
 	var Goal = Backbone.Model.extend({
 		url: "/goals"
 	});
