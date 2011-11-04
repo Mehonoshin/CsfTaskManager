@@ -1,13 +1,17 @@
 class MainController < ApplicationController
-  # before_filter :check_auth
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:auth]
   
   def index
   end
   
+  def auth
+    username = params[:username]
+    user = User.find_by_email(username)
+    if sign_in(user)
+      render :json => session.to_json
+    end
+  end    
+  
   private
   
-  def check_auth
-    redirect_to new_session_path if !user_signed_in?
-  end
 end
