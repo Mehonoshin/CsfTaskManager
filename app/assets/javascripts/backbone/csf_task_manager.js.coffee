@@ -9,3 +9,6 @@ window.CsfTaskManager =
   Collections: {}
   Routers: {}
   Views: {}
+  init: ->
+    rt = new CsfTaskManager.Routers.AppRouter()
+    Backbone.history.start()

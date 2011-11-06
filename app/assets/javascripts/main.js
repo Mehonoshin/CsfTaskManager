@@ -3,74 +3,11 @@ var d = date.getDate();
 var m = date.getMonth();
 var y = date.getFullYear();
 
-// Twitter bootstrap
-$(document).ready(function() {
-    $(".topbar").dropdown();
-});
 
 $(document).ready(function() {
-	
-	var Goal = Backbone.Model.extend({
-		url: "/goals"
-	});
-	var GoalsList = Backbone.Collection.extend({
-		model: Goal,
-		url: '/goals'
-	});
-	
-	var goalsView = Backbone.View.extend({
-		initialize: function() {
-			this.goals = new GoalsList();
-		},
-		el: $('#app'),
-		events: {
-			"click .add-btn": "addGoal",
-			"click #load": "loadGoals"
-		},
-		render: function() {
-			this.loadGoals();
-		},
-		addGoal: function() {
-			newTitle = $('.goal-title').val();
-			newNote = $('.goal-note').val();
-			newGoal = new Goal({title: newTitle, note: newNote});
-			newGoal.save();
-			this.goals.add(newGoal);
-		},
-		loadGoals: function() {
-			this.goals.fetch();
-			$("#goals-list").html('');
-			this.goals.each(function(goal) {
-				$("#goals-list").append("<li>" + goal.get('title') + "(" + goal.get('note') + ")</li>");	
-			});			
-		}
-	});
-	
-	var myRouter = Backbone.Router.extend({
-		initialize: function() {
-			goalsBlock = new goalsView();
-		},
-		routes: {
-			"!/": "root",
-			"!/form": "form",
-			"!/role": "role"
-		},
-		root: function() {
-			$('.app-screen').hide();			
-			$('#calendar-grid').show();
-		},
-		form: function() {
-			$('.app-screen').hide();
-			$('#goal-form').show();			
-		},
-		role: function() {
-			$('.app-screen').hide();
-			$('#role-form').show();			
-		}
-	});
-	
-	var rt = new myRouter;
-	Backbone.history.start();
+    $(".topbar").dropdown();
+
+	CsfTaskManager.init();
 	
 	$('#calendar').fullCalendar({
 		header: {
