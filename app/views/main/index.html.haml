@@ -1,5 +1,5 @@
 #app
-  #goal-form.app-screen{:style => "display: none;"}
+  #goal-form.app-screen.hidden
     %button#load.btn
       Load
     = render :partial => "goals/form"
@@ -16,5 +16,5 @@
       %td
         #calendar
 
-  .app-screen#role-form
+  .app-screen#role-form.hidden
     = render :partial => "roles/form"

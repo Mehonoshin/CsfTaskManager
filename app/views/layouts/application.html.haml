@@ -11,10 +11,15 @@
       .container-fluid
         = link_to "Do it later", root_path, :class => "brand"
         = render :partial => "main/menu"
-  .container-fluid
-    - if user_signed_in?
+  - if user_signed_in?
+    .container-fluid
       .sidebar
         = render :partial => "main/weekly_roles_goals"
+      .content
+        = yield
+        %footer
+  - else
     .content
       = yield
       %footer
+    
