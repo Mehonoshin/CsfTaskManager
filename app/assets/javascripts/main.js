@@ -7,6 +7,63 @@ var y = date.getFullYear();
 $(document).ready(function() {
     $(".topbar").dropdown();
 
+
+	// var Goal = Backbone.Model.extend({
+	// 	url: "/goals"
+	// });
+	// var GoalsList = Backbone.Collection.extend({
+	// 	model: Goal,
+	// 	url: '/goals'
+	// });
+	// 
+	// var goalsView = Backbone.View.extend({
+	// 	initialize: function() {
+	// 		this.goals = new GoalsList();
+	// 	},
+	// 	el: $('#app'),
+	// 	events: {
+	// 		"click .add-btn": "addGoal",
+	// 		"click #load": "loadGoals"
+	// 	},
+	// 	render: function() {
+	// 		this.loadGoals();
+	// 	},
+	// 	addGoal: function() {
+	// 		newTitle = $('.goal-title').val();
+	// 		newNote = $('.goal-note').val();
+	// 		newGoal = new Goal({title: newTitle, note: newNote});
+	// 		newGoal.save();
+	// 		this.goals.add(newGoal);
+	// 	},
+	// 	loadGoals: function() {
+	// 		this.goals.fetch();
+	// 		$("#goals-list").html('');
+	// 		this.goals.each(function(goal) {
+	// 			$("#goals-list").append("<li>" + goal.get('title') + "(" + goal.get('note') + ")</li>");	
+	// 		});			
+	// 	}
+	// });
+	// 
+	// var myRouter = Backbone.Router.extend({
+	// 	initialize: function() {
+	// 		goalsBlock = new goalsView();
+	// 	},
+	// 	routes: {
+	// 		"!/": "root",
+	// 		"!/form": "form"
+	// 	},
+	// 	root: function() {
+	// 		$('#calendar-grid').show();
+	// 		$('#form').hide();
+	// 	},
+	// 	form: function() {
+	// 		$('#calendar-grid').hide();
+	// 		$('#form').show();			
+	// 	}
+	// });
+	// 
+	// var rt = new myRouter;
+	// Backbone.history.start();
 	CsfTaskManager.init();
 	
 	$('#calendar').fullCalendar({
