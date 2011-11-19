@@ -103,6 +103,7 @@ GEM
       term-ansicolor (~> 1.0.5)
     highline (1.6.2)
     hike (1.2.1)
+    hirb (0.5.0)
     i18n (0.6.0)
     jquery-rails (1.0.14)
       railties (~> 3.0)
@@ -229,6 +230,7 @@ DEPENDENCIES
   guard-rspec
   haml
   heroku
+  hirb
   jquery-rails
   json
   launchy

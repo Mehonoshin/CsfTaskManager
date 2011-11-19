@@ -16,6 +16,12 @@
       .sidebar
         = render :partial => "main/weekly_roles_goals"
       .content
+        .b-notifications
+          .alert-message.success{:style => "display: none;"}
+            = link_to "x", "#", :class => "close"
+            %p
+              %strong.title
+              %span.body
         = yield
         %footer
   - else

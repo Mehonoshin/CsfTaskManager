@@ -1,10 +1,17 @@
-%table.bordered-table
-  %th
-    Roles
-  %th
-    Goals
-  %tr
-    %td
-      Son
-    %td
-      No smoking 		
+- if !@roles.count.zero?
+  %table.bordered-table.b-weekly-role-goals
+    %th
+      Roles
+    %th
+      Goals
+    - @roles.each do |role|
+      - if !role.goals.count.zero?
+        %tr
+          %td
+            = role.name
+          %td
+            - role.goals.each do |goal|
+              .b-weekly-role-goals__goal
+                = goal.title
+- else
+  You don't have any roles yet

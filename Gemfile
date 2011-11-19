@@ -23,6 +23,7 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 gem 'jquery-rails'
 
 group :development do
+  gem 'hirb'
 	gem 'mysql2'
   gem 'capistrano'
 	gem 'growl_notify'

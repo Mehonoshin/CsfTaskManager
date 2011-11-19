@@ -6,18 +6,23 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
   el: '#app'
 
   events:
-    "click .add-btn": "addGoal",
+    "click .add-goal": "addGoal",
     "click #load": "loadGoals"
 
   render: ->
     this.loadGoals()
 
   addGoal: ->
-    newTitle = $('.goal-title').val()
-    newNote = $('.goal-note').val()
-    newGoal = new CsfTaskManager.Models.Goal({title: newTitle, note: newNote})
+    newGoal = new CsfTaskManager.Models.Goal({title: $('.goal-title').val(), note: $('.goal-note').val(), role_id: $('#goal_role_id').val()})
     newGoal.save()
     this.goals.add(newGoal)
+    $('.alert-message .title').html("Succes!")
+    $('.alert-message .body').html("Goal added!")
+    $('.alert-message').alert()
+    $('.alert-message.success').show()
+    $('.goal-title').val('')
+    $('.goal-note').val('')
+    
 
   appendGoal: (goal) ->
     $("#goals-list").append("<li>" + goal.get('title') + "(" + goal.get('note') + ")</li>")

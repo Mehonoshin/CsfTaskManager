@@ -2,6 +2,7 @@ class MainController < ApplicationController
   before_filter :authenticate_user!, :except => [:auth]
   
   def index
+    @roles = current_user.roles
   end
   
   def auth

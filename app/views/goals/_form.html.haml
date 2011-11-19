@@ -6,9 +6,12 @@
 		%p
 		= f.text_field :title, :class => "goal-title"
 		%p
+		= f.label :role
+		= f.collection_select(:role_id, @roles, :id, :name)
+		%p
 		= f.label :note
 		%p
 		= f.text_field :note, :class => "goal-note"
 %p
-	%button{:class => "add-btn btn"}
+	%button{:class => "add-goal btn"}
 		Add

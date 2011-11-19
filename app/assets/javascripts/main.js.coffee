@@ -1,7 +1,7 @@
 $ = jQuery
 $ ->
   $(".topbar").dropdown()
-  CsfTaskManager.init()
+  CsfTaskManager.init()  
 
 # var date = new Date();
 # var d = date.getDate();

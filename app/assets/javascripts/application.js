@@ -10,6 +10,7 @@
 //= require bootstrap-dropdown
 //= require bootstrap-twipsy
 //= require bootstrap-scrollspy
+//= require bootstrap-alerts
 //= require underscore
 //= require backbone
 //= require backbone_rails_sync
