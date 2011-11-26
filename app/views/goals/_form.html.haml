@@ -24,9 +24,8 @@
 	%button.add-goal.btn
 		Apply
 		
-%p
-	%button.delete-goal.btn
-		Delete
+#delete_form
+	= button_to "Delete", "/goals", :method => :delete, :class => "btn delete-goal", :remote => true
 		
 %p
 	%button.edit-goal.btn.hidden

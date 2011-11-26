@@ -12,6 +12,11 @@ class GoalsController < ApplicationController
     render :json => current_user.goals.to_json
   end
   
-  def destroy    
+  def destroy
+    goal = Goal.find(params[:id])    
+    if current_user == goal.user
+      goal.destroy
+    end
+    render :nothing => true
   end
 end

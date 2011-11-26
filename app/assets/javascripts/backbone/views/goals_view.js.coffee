@@ -34,6 +34,7 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     $('.goal-title').val(goal.get('title'))
     $('.goal-note').val(goal.get('note'))
     $('#goal_role_id').val(goal.get('id'))
+    $('#delete_form form').attr("action", "/goals/" + goal.id)
 
   editGoal: ->
     this.currentGoal.save()
@@ -47,6 +48,6 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     $('.goal-note').val('')
 
   deleteGoal: -> 
-    console.log(this.currentGoal)
-    this.currentGoal.destroy()
+    # console.log(this.currentGoal)
+    # this.currentGoal.destroy()
 	
