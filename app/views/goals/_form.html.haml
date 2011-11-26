@@ -1,5 +1,7 @@
-%h3
+%h3.new
 	New Goal
+%h3.edit.hidden
+	Edit
 .form-stacked
 	= form_for Goal.new do |f|
 		= f.label :title
@@ -12,6 +14,15 @@
 		= f.label :note
 		%p
 		= f.text_field :note, :class => "goal-note"
+
 %p
-	%button{:class => "add-goal btn"}
-		Add
+	%button.add-goal.btn
+		Apply
+		
+%p
+	%button.delete-goal.btn
+		Delete
+		
+%p
+	%button.edit-goal.btn.hidden
+		Edit

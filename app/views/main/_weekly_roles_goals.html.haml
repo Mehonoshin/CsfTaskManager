@@ -5,13 +5,14 @@
     %th
       Goals
     - @roles.each do |role|
-      - if !role.goals.count.zero?
-        %tr
-          %td
-            = role.name
-          %td
-            - role.goals.each do |goal|
-              .b-weekly-role-goals__goal
-                = goal.title
+      %tr{:class => "role-#{role.id}"}
+        %td
+          = role.name
+        %td
+          - role.goals.each do |goal|
+            .b-weekly-role-goals__goal
+              = link_to goal.title, "#!/goal/#{goal.id}"
 - else
   You don't have any roles yet
+  %p
+    = link_to "Add one?", "#!/role/"

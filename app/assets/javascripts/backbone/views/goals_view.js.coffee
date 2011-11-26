@@ -1,34 +1,52 @@
 class CsfTaskManager.Views.goalsView extends Backbone.View
 
   initialize: ->
-    this.goals = new CsfTaskManager.Collections.GoalsCollection()
+
 
   el: '#app'
 
   events:
     "click .add-goal": "addGoal",
-    "click #load": "loadGoals"
+    "click .delete-goal": "deleteGoal",
+    "click .edit-goal": "editGoal"
 
   render: ->
-    this.loadGoals()
+    CsfTaskManager.loadGoals()
 
   addGoal: ->
-    newGoal = new CsfTaskManager.Models.Goal({title: $('.goal-title').val(), note: $('.goal-note').val(), role_id: $('#goal_role_id').val()})
-    newGoal.save()
-    this.goals.add(newGoal)
+    role_id_val = $('#goal_role_id').val()
+    goal_title = $('.goal-title').val()
+    goal_note = $('.goal-note').val()
+    newGoal = new CsfTaskManager.Models.Goal({title: goal_title, note: goal_note, role_id: role_id_val})
+    newGoal.save null,
+      success: (model, response) ->
+        model.fetch()
+    CsfTaskManager.goals.add(newGoal)
+    this.clearForm()
+    $("table.b-weekly-role-goals tr.role-" + role_id_val + " td:last").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + newGoal.id + "'>" + goal_title + "</a></div>")
+    
+      
+  edit: (id) ->
+    $('.edit-goal').show()
+    $('.add-goal').hide()
+    goal = CsfTaskManager.goals.get(id)
+    this.currentGoal = goal
+    $('.goal-title').val(goal.get('title'))
+    $('.goal-note').val(goal.get('note'))
+    $('#goal_role_id').val(goal.get('id'))
+
+  editGoal: ->
+    this.currentGoal.save()
+
+  clearForm: ->
     $('.alert-message .title').html("Succes!")
     $('.alert-message .body').html("Goal added!")
     $('.alert-message').alert()
     $('.alert-message.success').show()
     $('.goal-title').val('')
     $('.goal-note').val('')
-    
 
-  appendGoal: (goal) ->
-    $("#goals-list").append("<li>" + goal.get('title') + "(" + goal.get('note') + ")</li>")
-
-  loadGoals: ->
-    this.goals.fetch()
-    $("#goals-list").html('')
-    this.appendGoal goal for goal in this.goals.models
-      
+  deleteGoal: -> 
+    console.log(this.currentGoal)
+    this.currentGoal.destroy()
+	

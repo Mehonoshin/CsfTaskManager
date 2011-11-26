@@ -9,6 +9,8 @@ window.CsfTaskManager =
   Collections: {}
   Routers: {}
   Views: {}
-  init: ->
+  init: (roles, goals) ->
+    this.roles = new CsfTaskManager.Collections.RolesCollection(roles)
+    this.goals = new CsfTaskManager.Collections.GoalsCollection(goals)
     rt = new CsfTaskManager.Routers.AppRouter()
     Backbone.history.start()

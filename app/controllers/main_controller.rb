@@ -3,6 +3,7 @@ class MainController < ApplicationController
   
   def index
     @roles = current_user.roles
+    @goals = current_user.goals
   end
   
   def auth

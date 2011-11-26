@@ -1,10 +1,12 @@
+:erb
+  <script>
+    $(document).ready(function(){
+      CsfTaskManager.init(<%= @roles.to_json %>, <%= @goals.to_json %>);
+    });		
+  </script>
 #app
-  #goal-form.app-screen.hidden
-    %button#load.btn
-      Load
+  .app-screen#goal-form.hidden
     = render :partial => "goals/form"
-    %ul#goals-list
-
 
   %table.app-screen.bordered-table#calendar-grid
     %tr
