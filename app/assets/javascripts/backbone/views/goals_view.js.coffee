@@ -17,7 +17,9 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     role_id_val = $('#goal_role_id').val()
     goal_title = $('.goal-title').val()
     goal_note = $('.goal-note').val()
-    newGoal = new CsfTaskManager.Models.Goal({title: goal_title, note: goal_note, role_id: role_id_val})
+    goal_date = $('#goal_date_3i').val() + "." + $('#goal_date_2i').val() + "." + $('#goal_date_1i').val()
+    goal_repeat = $('#goal_repeat').val()
+    newGoal = new CsfTaskManager.Models.Goal({title: goal_title, note: goal_note, role_id: role_id_val, date: goal_date, repeat: goal_repeat})
     newGoal.save null,
       success: (model, response) ->
         model.fetch()
@@ -27,8 +29,6 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     
       
   edit: (id) ->
-    $('.edit-goal').show()
-    $('.add-goal').hide()
     goal = CsfTaskManager.goals.get(id)
     this.currentGoal = goal
     $('.goal-title').val(goal.get('title'))

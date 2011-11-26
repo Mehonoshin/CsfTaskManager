@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
-  def create
+  def create    
+    params[:goal][:date] = params[:goal][:date].to_datetime    
     current_user.goals.create(params[:goal])
     render :json => current_user.goals.last.to_json
   end

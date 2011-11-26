@@ -4,16 +4,21 @@
 	Edit
 .form-stacked
 	= form_for Goal.new do |f|
-		= f.label :title
 		%p
-		= f.text_field :title, :class => "goal-title"
+			= f.label :title
+			= f.text_field :title, :class => "goal-title"
 		%p
-		= f.label :role
-		= f.collection_select(:role_id, @roles, :id, :name)
+			= f.label :role
+			= f.collection_select(:role_id, @roles, :id, :name)
 		%p
-		= f.label :note
+			= f.label :note
+			= f.text_field :note, :class => "goal-note"
 		%p
-		= f.text_field :note, :class => "goal-note"
+			= f.label :repeat
+			= f.select :repeat, options_for_select([['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['None', 'none']])
+		%p.datepicker
+			= f.label :date, :class => "datepicker__label"
+			= f.date_select :date, :prefix => :goal, :order => [:day, :month, :year], :use_month_numbers => true
 
 %p
 	%button.add-goal.btn

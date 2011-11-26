@@ -13,7 +13,7 @@
 
 class Goal < ActiveRecord::Base
   ## included modules & attr_*
-
+  
   ## associations
   belongs_to :user
   belongs_to :role
@@ -25,6 +25,7 @@ class Goal < ActiveRecord::Base
   ## validations
 
   ## named_scopes
+  # scope
 
   ## class methods
   public
