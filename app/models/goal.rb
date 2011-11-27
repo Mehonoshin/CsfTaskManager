@@ -2,13 +2,16 @@
 #
 # Table name: goals
 #
-#  id         :integer(4)      not null, primary key
-#  user_id    :integer(4)
-#  title      :string(255)
-#  note       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  role_id    :integer(4)
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)
+#  title           :string(255)
+#  note            :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  role_id         :integer(4)
+#  date            :datetime
+#  repeat_schedule :string(255)
+#  weekday         :integer(4)
 #
 
 class Goal < ActiveRecord::Base

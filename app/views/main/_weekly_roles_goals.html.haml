@@ -8,12 +8,9 @@
       Goals
     - @roles.each do |role|
       %tr{:class => "role-#{role.id}"}
-        %td
+        %td.role_name
           = role.name
-        %td
-          / - role.goals.each do |goal|
-          /   .b-weekly-role-goals__goal
-          /     = link_to goal.title, "#!/goal/#{goal.id}"
+        %td.role_goals
 - else
   You don't have any roles yet
   %p

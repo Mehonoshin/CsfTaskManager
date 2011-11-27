@@ -12,5 +12,5 @@ window.CsfTaskManager =
   init: (roles, goals) ->
     this.roles = new CsfTaskManager.Collections.RolesCollection(roles)
     this.goals = new CsfTaskManager.Collections.GoalsCollection(goals)
-    rt = new CsfTaskManager.Routers.AppRouter()
+    this.router = new CsfTaskManager.Routers.AppRouter()
     Backbone.history.start()

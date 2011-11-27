@@ -4,6 +4,7 @@ class CsfTaskManager.Routers.AppRouter extends Backbone.Router
     this.rolesController = new CsfTaskManager.Views.rolesView()
 
   routes:
+    "": "root",
     "!/": "root",
     "!/goal/:id": "goal",
     "!/role/:id": "role"

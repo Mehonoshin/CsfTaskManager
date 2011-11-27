@@ -2,6 +2,7 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
 
   initialize: ->
     this.render()
+    CsfTaskManager.goals.bind('all', this.render, this)
 
   el: '#app'
 
@@ -11,6 +12,7 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     "click .edit-goal": "editGoal"
 
   render: ->
+    $('.role_goals').empty()
     this.sidebarGoal goal for goal in CsfTaskManager.goals.models
 
   sidebarGoal: (goal) ->
@@ -25,8 +27,8 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     newGoal = new CsfTaskManager.Models.Goal({title: goal_title, note: goal_note, role_id: role_id_val, date: goal_date, repeat: goal_repeat})
     newGoal.save null,
       success: (model, response) ->
-        CsfTaskManager.goals.add(model)        
-        $("table.b-weekly-role-goals tr.role-" + role_id_val + " td:last").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + response.id + "'>" + goal_title + "</a></div>")
+        CsfTaskManager.goals.add(model)
+    this.showSuccess("Goal added!")
     this.clearForm()	
     
       
@@ -42,14 +44,17 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     this.currentGoal.save()
 
   clearForm: ->
-    $('.alert-message .title').html("Succes!")
-    $('.alert-message .body').html("Goal added!")
-    $('.alert-message').alert()
-    $('.alert-message.success').show()
     $('.goal-title').val('')
     $('.goal-note').val('')
 
   deleteGoal: -> 
-    # console.log(this.currentGoal)
-    # this.currentGoal.destroy()
-	
+    CsfTaskManager.goals.remove(this.currentGoal)
+    this.showSuccess("Goal deleted!")
+    this.clearForm()
+
+  showSuccess: (text) ->
+    $('.alert-message .title').html("Success!")
+    $('.alert-message .body').html(text)
+    $('.alert-message').alert()
+    $('.alert-message.success').show()
+    
