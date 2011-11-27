@@ -11,3 +11,6 @@
 	position: absolute;
 	top: 70px;
 }
+.no-border {
+	border: none;
+}

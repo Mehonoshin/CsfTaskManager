@@ -14,8 +14,8 @@
 			= f.label :note
 			= f.text_field :note, :class => "goal-note"
 		%p
-			= f.label :repeat
-			= f.select :repeat, options_for_select([['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['None', 'none']])
+			= f.label :repeat_schedule
+			= f.select :repeat_schedule, options_for_select([['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['None', 'none']])
 		%p.datepicker
 			= f.label :date, :class => "datepicker__label"
 			= f.date_select :date, :prefix => :goal, :order => [:day, :month, :year], :use_month_numbers => true

@@ -1,7 +1,7 @@
 class CsfTaskManager.Views.goalsView extends Backbone.View
 
   initialize: ->
-
+    this.render()
 
   el: '#app'
 
@@ -11,7 +11,10 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     "click .edit-goal": "editGoal"
 
   render: ->
-    CsfTaskManager.loadGoals()
+    this.sidebarGoal goal for goal in CsfTaskManager.goals.models
+
+  sidebarGoal: (goal) ->
+    $('tr.role-' + goal.get("role_id") + ' > td:last').append('<div class="b-weekly-role-goals__goal"><a href="#!/goal/' + goal.id + '">' + goal.get('title') + "</a></div>")
 
   addGoal: ->
     role_id_val = $('#goal_role_id').val()
@@ -22,10 +25,9 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     newGoal = new CsfTaskManager.Models.Goal({title: goal_title, note: goal_note, role_id: role_id_val, date: goal_date, repeat: goal_repeat})
     newGoal.save null,
       success: (model, response) ->
-        model.fetch()
-    CsfTaskManager.goals.add(newGoal)
-    this.clearForm()
-    $("table.b-weekly-role-goals tr.role-" + role_id_val + " td:last").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + newGoal.id + "'>" + goal_title + "</a></div>")
+        CsfTaskManager.goals.add(model)        
+        $("table.b-weekly-role-goals tr.role-" + role_id_val + " td:last").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + response.id + "'>" + goal_title + "</a></div>")
+    this.clearForm()	
     
       
   edit: (id) ->

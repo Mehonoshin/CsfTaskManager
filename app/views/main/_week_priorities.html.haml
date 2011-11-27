@@ -1,0 +1,9 @@
+%h3
+  Week priorities
+%table
+  %tr
+    %td
+      - @this_week_goals.each do |goal|
+        .b-weekly-role-goals__goal
+          = link_to goal[:title], "#!/goal/#{goal[:id]}"
+  

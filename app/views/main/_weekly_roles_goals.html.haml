@@ -1,3 +1,5 @@
+%h3
+  Roles And Goals
 - if !@roles.count.zero?
   %table.bordered-table.b-weekly-role-goals
     %th
@@ -9,9 +11,9 @@
         %td
           = role.name
         %td
-          - role.goals.each do |goal|
-            .b-weekly-role-goals__goal
-              = link_to goal.title, "#!/goal/#{goal.id}"
+          / - role.goals.each do |goal|
+          /   .b-weekly-role-goals__goal
+          /     = link_to goal.title, "#!/goal/#{goal.id}"
 - else
   You don't have any roles yet
   %p

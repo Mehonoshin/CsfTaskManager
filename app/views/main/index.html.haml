@@ -1,21 +1,30 @@
 :erb
   <script>
     $(document).ready(function(){
-      CsfTaskManager.init(<%= @roles.to_json %>, <%= @goals.to_json %>);
-    });		
+      CsfTaskManager.init(<%= @roles.to_json %>, <%= @this_week_goals.to_json %>);
+      $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title'
+        },
+        editable: true,
+        firstDay: 1,
+        events: <%= @month_tasks.to_json %> 
+      });
+    });		    
   </script>
 #app
   .app-screen#goal-form.hidden
     = render :partial => "goals/form"
 
-  %table.app-screen.bordered-table#calendar-grid
+  %table.app-screen.bordered-table#calendar-grid.no-border
     %tr
-      %td{:colspan => 2}
-        week
+      %td.no-border{:colspan => 2}
+        = render :partial => "daily_priorities"
     %tr
-      %td
-        day
-      %td
+      %td.no-border{:width => "200px"}
+        = render :partial => "week_priorities"
+      %td.no-border
         #calendar
 
   .app-screen#role-form.hidden

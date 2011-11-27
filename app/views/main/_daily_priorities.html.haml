@@ -1,0 +1,15 @@
+%h3
+  Day priorities
+%table
+
+  %tr
+    - @week_start.to_date.upto(@week_end.to_date) do |date|
+      %th
+        = date.strftime('%A, %d.%m.%Y')
+  %tr
+    - @day_priorities.each do |day|
+      %td
+        - day.each do |goal|
+          .b-weekly-role-goals__goal
+            = link_to goal[:title], "#!/goal/#{goal[:id]}"
+	       
