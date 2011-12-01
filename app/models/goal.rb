@@ -16,6 +16,7 @@
 
 class Goal < ActiveRecord::Base
   ## included modules & attr_*
+  # attr_accessor :id
   
   ## associations
   belongs_to :user

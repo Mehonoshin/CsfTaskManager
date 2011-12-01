@@ -17,8 +17,7 @@ class CsfTaskManager.Routers.AppRouter extends Backbone.Router
   goal: (id) ->
     $('.app-screen').hide()
     $('#goal-form').show()
-    if id != ""
-      this.goalsController.edit(id)
+    if id then this.goalsController.renderEditForm(id) else this.goalsController.renderAddForm()
     $('.alert-message').hide()
 
   role: (id) ->

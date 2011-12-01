@@ -6,6 +6,11 @@ class GoalsController < ApplicationController
   end
   
   def update
+    @goal = Goal.find(params[:goal][:id])
+    if @goal.user == current_user
+      @goal.update_attributes(params[:goal])
+    end
+    render :json => @goal.to_json
   end
   
   def index
