@@ -1,6 +1,8 @@
 class CsfTaskManager.Views.goalsView extends Backbone.View
 
   initialize: ->
+    this.startWeekDate = new Date($(".b-day-priorities table").data("start"))
+    this.endWeekDate = new Date($(".b-day-priorities table").data("end"))
     this.render()
     CsfTaskManager.goals.bind('all', this.render, this)
 
@@ -15,6 +17,23 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
   render: ->
     $('.role_goals').empty()
     this.sidebarGoal goal for goal in CsfTaskManager.goals.models
+
+    $('.b-day-priorities table td').html("")
+    this.renderDayPrior goal for goal in CsfTaskManager.goals.models
+
+    $('.b-weekly-priorities').html("")
+    this.renderWeekPrior goal for goal in CsfTaskManager.goals.models
+
+  renderDayPrior: (goal) ->
+    date = new Date(goal.get("date"))
+    if date > this.startWeekDate && date < this.endWeekDate
+      $('.b-day-priorities table td.wday-' + goal.get("weekday")).append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
+
+  renderWeekPrior: (goal) ->
+    date = new Date(goal.get("date"))
+    if date > this.startWeekDate && date < this.endWeekDate
+      $(".b-weekly-priorities").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
+
 
   renderAddForm: ->
     $('.delete-goal').hide()

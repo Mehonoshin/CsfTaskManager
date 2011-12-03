@@ -1,15 +1,12 @@
-%h3
-  Day priorities
-%table
+.b-day-priorities
+  %h3
+    Day priorities
+  %table{"data-start" => @week_start.strftime('%m.%d.%Y'), "data-end" => @week_end.strftime('%m.%d.%Y')}
 
-  %tr
-    - @week_start.to_date.upto(@week_end.to_date) do |date|
-      %th
-        = date.strftime('%A, %d.%m.%Y')
-  %tr
-    - @day_priorities.each do |day|
-      %td
-        - day.each do |goal|
-          .b-weekly-role-goals__goal
-            = link_to goal[:title], "#!/goal/#{goal[:id]}"
-	       
+    %tr
+      - @week_start.to_date.upto(@week_end.to_date) do |date|
+        %th
+          = date.strftime('%A, %d.%m.%Y')
+    %tr
+      - @week_start.to_date.upto(@week_end.to_date) do |date|
+        %td{:class => "wday-#{date.wday}"}
