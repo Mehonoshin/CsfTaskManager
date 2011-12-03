@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127105807) do
+ActiveRecord::Schema.define(:version => 20111203200512) do
 
   create_table "goals", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20111127105807) do
     t.datetime "date"
     t.string   "repeat_schedule"
     t.integer  "weekday"
+    t.string   "priority"
   end
 
   create_table "roles", :force => true do |t|

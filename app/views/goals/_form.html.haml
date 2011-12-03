@@ -15,6 +15,9 @@
         = f.label :note
         = f.text_field :note, :class => "goal-note"
       %p
+        = f.label :priority
+        = f.select :priority, options_for_select([['Week priority', 'week'], ['Day priority', 'day']])
+      %p
         = f.label :repeat_schedule
         = f.select :repeat_schedule, options_for_select([['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['None', 'none']])
       %p.datepicker
@@ -29,6 +32,3 @@
   %p
     %button.delete-goal.btn.hidden.danger
       Delete
-		
-  / #delete_form
-  /   = button_to "Delete", "/goals", :method => :delete, :class => "btn danger delete-goal hidden", :remote => true

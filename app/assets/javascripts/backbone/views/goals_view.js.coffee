@@ -26,12 +26,12 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
 
   renderDayPrior: (goal) ->
     date = new Date(goal.get("date"))
-    if (date > this.startWeekDate && date < this.endWeekDate) || (goal.get("repeat_schedule") == "weekly") || (goal.get("repeat_schedule") == "monthly")
+    if (goal.get("priority") == "day") && ((date > this.startWeekDate && date < this.endWeekDate) || (goal.get("repeat_schedule") == "weekly") || (goal.get("repeat_schedule") == "monthly"))
       $('.b-day-priorities table td.wday-' + goal.get("weekday")).append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
 
   renderWeekPrior: (goal) ->
     date = new Date(goal.get("date"))
-    if date > this.startWeekDate && date < this.endWeekDate
+    if (goal.get("priority") == "week") && (date > this.startWeekDate && date < this.endWeekDate)
       $(".b-weekly-priorities").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
 
 
@@ -54,6 +54,7 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     $('.goal-title').val(goal.get('title'))
     $('.goal-note').val(goal.get('note'))
     $('#goal_role_id').val(goal.get('id'))
+    $('#goal_priority').val(goal.get('priority'))
     $('#delete_form form').attr("action", "/goals/" + goal.id)
 
   sidebarGoal: (goal) ->
@@ -66,8 +67,9 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     goal_title = $('.goal-title').val()
     goal_note = $('.goal-note').val()
     goal_date = $('#goal_date_3i').val() + "." + $('#goal_date_2i').val() + "." + $('#goal_date_1i').val()
-    goal_repeat = $('#goal_repeat_schedule').val()    
-    model.set({title: goal_title, note: goal_note, role_id: role_id_val, date: goal_date, repeat_schedule: goal_repeat})
+    goal_repeat = $('#goal_repeat_schedule').val()
+    goal_priority = $('#goal_priority').val()
+    model.set({title: goal_title, note: goal_note, role_id: role_id_val, date: goal_date, repeat_schedule: goal_repeat, priority: goal_priority})
 
   addGoal: ->
     newGoal = new CsfTaskManager.Models.Goal()
