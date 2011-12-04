@@ -29,6 +29,7 @@ class CsfTaskManager.Views.exclusionsView extends Backbone.View
       success: (model, response) ->
         CsfTaskManager.goals.get(model.get("goal_id")).exclusions.add(model)
     this.showSuccess("Exclusion added!")
+    this.render()
 
   deleteExclusion: (e) ->
     id = $(e.currentTarget).data("id")
