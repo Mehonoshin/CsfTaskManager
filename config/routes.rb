@@ -4,6 +4,8 @@ CsfTaskManager::Application.routes.draw do
   root :to => 'main#index'
   match "/api/auth" => "main#auth"
   
-  resources :goals
+  resources :goals do
+    resources :exclusions
+  end
   resources :roles
 end

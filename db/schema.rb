@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111203200512) do
+ActiveRecord::Schema.define(:version => 20111204151659) do
+
+  create_table "exclusions", :force => true do |t|
+    t.integer  "goal_id"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "goals", :force => true do |t|
     t.integer  "user_id"

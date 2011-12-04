@@ -3,6 +3,7 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
   initialize: ->
     this.startWeekDate = new Date($(".b-day-priorities table").data("start"))
     this.endWeekDate = new Date($(".b-day-priorities table").data("end"))
+    this.exclusionsView = new CsfTaskManager.Views.exclusionsView()
     this.render()
     CsfTaskManager.goals.bind('all', this.render, this)
 
@@ -45,7 +46,6 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
           $('.b-day-priorities table td').each (num, value) =>
             tdDate = new Date($(value).data("date"))
             if eqlDate(tdDate, nextDate)
-              console.log(value)
               this.goalTemplate goal, value
 
   renderWeekPrior: (goal) ->
@@ -63,10 +63,13 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     $('.goal-form h3.edit').hide()
     $('.edit-goal').hide()
     $('.add-goal').show()
+    $('.exclusion-form').hide()
 
   renderEditForm: (id) ->
     goal = CsfTaskManager.goals.get(id)
     this.currentGoal = goal
+    this.exclusionsView.reRenderFor(goal)
+    $('.exclusion-form').show()
     $('.delete-goal').show()
     $('.goal-form h3.new').hide()
     $('.goal-form h3.edit').show()

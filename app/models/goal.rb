@@ -20,6 +20,7 @@ class Goal < ActiveRecord::Base
   ## associations
   belongs_to :user
   belongs_to :role
+  has_many :exclusions
   
   ## plugins
 
@@ -38,6 +39,11 @@ class Goal < ActiveRecord::Base
 
   ## class methods
   public
+
+  # def as_json(options = {}) 
+  #   super(options.merge(include: { exclusions: { only: [:date, :goal_id] } }))
+  # end
+  
   protected
   private
   

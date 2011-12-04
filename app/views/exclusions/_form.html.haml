@@ -1,0 +1,16 @@
+%h3.new
+  Add schedule exclusion
+.form-stacked
+  = form_for Goal.new do |f|
+    %p.datepicker
+      = f.label :date, :class => "datepicker__label"
+      = f.date_select :date, :prefix => :exclusion, :order => [:day, :month, :year], :use_month_numbers => true
+%p
+  %button.add-exclusion.btn
+    Apply
+  %h3
+    Exclusions list
+  %table.exclusions-list{:style => "width: 300px;"}
+    %tr
+      %td
+        No exclusions

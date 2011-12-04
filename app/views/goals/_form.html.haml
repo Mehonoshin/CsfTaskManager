@@ -1,34 +1,41 @@
-.goal-form
-  %h3.new
-    New Goal
-  %h3.edit.hidden
-    Edit
-  .form-stacked
-    = form_for Goal.new do |f|
-      %p
-        = f.label :title
-        = f.text_field :title, :class => "goal-title"
-      %p
-        = f.label :role
-        = f.collection_select(:role_id, @roles, :id, :name)
-      %p
-        = f.label :note
-        = f.text_field :note, :class => "goal-note"
-      %p
-        = f.label :priority
-        = f.select :priority, options_for_select([['Week priority', 'week'], ['Day priority', 'day']])
-      %p
-        = f.label :repeat_schedule
-        = f.select :repeat_schedule, options_for_select([['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['None', 'none']])
-      %p.datepicker
-        = f.label :date, :class => "datepicker__label"
-        = f.date_select :date, :prefix => :goal, :order => [:day, :month, :year], :use_month_numbers => true
-  %p
-    %button.add-goal.btn
-      Apply
-  %p
-    %button.edit-goal.btn.hidden
-      Edit
-  %p
-    %button.delete-goal.btn.hidden.danger
-      Delete
+%table{:style => "border: none;"}
+  %tr
+    %td
+      .goal-form
+        %h3.new
+          New Goal
+        %h3.edit.hidden
+          Edit
+        .form-stacked
+          = form_for Goal.new do |f|
+            %p
+              = f.label :title
+              = f.text_field :title, :class => "goal-title"
+            %p
+              = f.label :role
+              = f.collection_select(:role_id, @roles, :id, :name)
+            %p
+              = f.label :note
+              = f.text_field :note, :class => "goal-note"
+            %p
+              = f.label :priority
+              = f.select :priority, options_for_select([['Week priority', 'week'], ['Day priority', 'day']])
+            %p
+              = f.label :repeat_schedule
+              = f.select :repeat_schedule, options_for_select([['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly'], ['None', 'none']])
+            %p.datepicker
+              = f.label :date, :class => "datepicker__label"
+              = f.date_select :date, :prefix => :goal, :order => [:day, :month, :year], :use_month_numbers => true
+        %p
+          %button.add-goal.btn
+            Apply
+        %p
+          %button.edit-goal.btn.hidden
+            Edit
+        %p
+          %button.delete-goal.btn.hidden.danger
+            Delete
+
+    %td
+      .exclusion-form
+        = render :partial => "exclusions/form"

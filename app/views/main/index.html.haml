@@ -1,7 +1,7 @@
 :erb
   <script>
     $(document).ready(function(){
-      CsfTaskManager.init(<%= @roles.to_json %>, <%= @this_week_goals.to_json %>);
+      CsfTaskManager.init(<%= @roles.to_json %>, <%= @this_week_goals.to_json(:include => :exclusions) %>);
       $('#calendar').fullCalendar({
         header: {
           left: 'prev,next today',
