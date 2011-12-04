@@ -30,7 +30,7 @@ class Goal < ActiveRecord::Base
   validates :title, :user_id, :date, :priority, :repeat_schedule, :presence => true
 
   ## named_scopes
-  scope :this_week, lambda { |week_start, week_end| where("(date >= ? AND date <= ?) OR repeat_schedule = ? ", week_start, week_end, 'weekly') }
+  scope :this_week, lambda { |week_start, week_end| where("(date >= ? AND date <= ?) OR repeat_schedule = ? OR repeat_schedule = ?", week_start, week_end, 'weekly', 'monthly') }
   scope :this_day, lambda { |day| where("date >= ? AND date <= ?", day.beginning_of_day, day.end_of_day) }
   scope :this_month, lambda { |day| where("date >= ? AND date <= ?", day.beginning_of_month, day.end_of_month) }
   scope :week_priority, where("priority = 'week'")

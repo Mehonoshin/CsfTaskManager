@@ -29,13 +29,24 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
     if (goal.get("priority") == "day")
       if (goal.get("repeat_schedule") == "none") && dateInRange(date, this.startWeekDate, this.endWeekDate)
         this.goalTemplate goal, '.b-day-priorities table td.wday-' + goal.get("weekday")
+
       if (goal.get("repeat_schedule") == "daily") && greaterOrEqualThan(this.endWeekDate, date)
         $('.b-day-priorities table td').each (num, value) =>
           tdDate = new Date($(value).data("date"))
           if tdDate > date
             this.goalTemplate goal, value	
+
       if (goal.get("repeat_schedule") == "weekly") && greaterOrEqualThan(this.endWeekDate, date)
         this.goalTemplate goal, '.b-day-priorities table td.wday-' + goal.get("weekday")
+
+      if (goal.get("repeat_schedule") == "monthly")
+        nextDate = nextMonthlyDate(date)
+        if dateInRange(date, this.startWeekDate, this.endWeekDate) || dateInRange(nextDate, this.startWeekDate, this.endWeekDate)
+          $('.b-day-priorities table td').each (num, value) =>
+            tdDate = new Date($(value).data("date"))
+            if eqlDate(tdDate, nextDate)
+              console.log(value)
+              this.goalTemplate goal, value
 
   renderWeekPrior: (goal) ->
     date = new Date(goal.get("date"))
