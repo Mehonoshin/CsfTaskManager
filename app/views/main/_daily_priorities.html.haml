@@ -9,4 +9,4 @@
           = date.strftime('%A, %d.%m.%Y')
     %tr
       - @week_start.to_date.upto(@week_end.to_date) do |date|
-        %td{:class => "wday-#{date.wday}"}
+        %td{:class => "wday-#{date.wday}", "data-date" => date}

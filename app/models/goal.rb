@@ -27,7 +27,7 @@ class Goal < ActiveRecord::Base
   before_save :set_weekday
 
   ## validations
-  validates :title, :user_id, :weekday, :date, :priority, :repeat_schedule, :presence => true
+  validates :title, :user_id, :date, :priority, :repeat_schedule, :presence => true
 
   ## named_scopes
   scope :this_week, lambda { |week_start, week_end| where("(date >= ? AND date <= ?) OR repeat_schedule = ? ", week_start, week_end, 'weekly') }

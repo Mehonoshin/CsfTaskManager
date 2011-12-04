@@ -26,13 +26,25 @@ class CsfTaskManager.Views.goalsView extends Backbone.View
 
   renderDayPrior: (goal) ->
     date = new Date(goal.get("date"))
-    if (goal.get("priority") == "day") && ((date > this.startWeekDate && date < this.endWeekDate) || (goal.get("repeat_schedule") == "weekly") || (goal.get("repeat_schedule") == "monthly"))
-      $('.b-day-priorities table td.wday-' + goal.get("weekday")).append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
+    if (goal.get("priority") == "day")
+      if (goal.get("repeat_schedule") == "none") && (date > this.startWeekDate && date < this.endWeekDate)
+        this.goalTemplate goal, '.b-day-priorities table td.wday-' + goal.get("weekday")
+      if (goal.get("repeat_schedule") == "daily") && (date.getTime() <= this.endWeekDate.getTime())
+        $('.b-day-priorities table td').each (num, value) =>
+          tdDate = new Date($(value).data("date"))
+          if tdDate > date
+            this.goalTemplate goal, value	
+      if (goal.get("repeat_schedule") == "weekly") && (date.getTime() <= this.endWeekDate.getTime())
+        this.goalTemplate goal, '.b-day-priorities table td.wday-' + goal.get("weekday")
 
   renderWeekPrior: (goal) ->
     date = new Date(goal.get("date"))
-    if (goal.get("priority") == "week") && (date > this.startWeekDate && date < this.endWeekDate)
-      $(".b-weekly-priorities").append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
+    if (goal.get("priority") == "week")
+      # if && (date > this.startWeekDate && date < this.endWeekDate)
+      this.goalTemplate goal, ".b-weekly-priorities"
+
+  goalTemplate: (goal, container) -> 
+    $(container).append("<div class='b-weekly-role-goals__goal'><a href='#!/goal/" + goal.id + "'>" + goal.get("title") + "</a></div>")
 
 
   renderAddForm: ->
