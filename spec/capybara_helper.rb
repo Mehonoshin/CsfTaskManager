@@ -14,3 +14,12 @@ def fill_and_submit_form(form, data)
     page.find("input.btn").click
   end      
 end
+
+def fill_form(form, data)
+  button = "commit"
+  within(form) do
+    data.keys.each do |key|
+      fill_in(key, :with => data[key])
+    end
+  end      
+end

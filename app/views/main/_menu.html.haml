@@ -16,6 +16,6 @@
     Logged in as
     = link_to current_user.email, user_path
     = "/"
-    = link_to "Exit", destroy_user_session_path, :method => :delete
+    = link_to "Exit", destroy_user_session_path, :method => :delete, :id => "exit"
   - else
     = link_to "Sign in", new_user_session_path
