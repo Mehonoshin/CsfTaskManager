@@ -12,6 +12,7 @@
 #  date            :datetime
 #  repeat_schedule :string(255)
 #  weekday         :integer(4)
+#  priority        :string(255)
 #
 
 class Goal < ActiveRecord::Base

@@ -33,15 +33,14 @@ function dateInRange(date, from, to) {
 function nextMonthlyDate(date) {
 	day = date.getDate();	
 	today = new Date();
-	currentMonth = today.getMonth();
-	month = currentMonth;
-	if (currentMonth == 12) {
-      month = 1;	
+	month = today.getMonth();
+	if (today.getMonth() == 12) {
+      month = "01";	
 	} else {
       month++;
 	}
 	currentYear = date.getFullYear();
-	if (currentMonth == 12 && today.getDate() == 31) {
+	if (today.getMonth() == 12) {
 	  currentYear++;
 	}	
 	nextDate = new Date(month + "." + day + "." + currentYear);

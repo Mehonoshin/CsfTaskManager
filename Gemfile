@@ -32,6 +32,7 @@ group :development do
 end
 
 group :test, :development do
+  gem 'jasmine'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'guard-rspec'

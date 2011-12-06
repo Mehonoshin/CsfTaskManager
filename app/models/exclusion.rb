@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: exclusions
+#
+#  id         :integer(4)      not null, primary key
+#  goal_id    :integer(4)
+#  date       :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Exclusion < ActiveRecord::Base
   ## included modules & attr_*
   
